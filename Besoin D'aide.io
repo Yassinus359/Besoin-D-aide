@@ -27,3 +27,61 @@
 <script src="script.js"></script>
 </body>
 </html>
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    margin: 0;
+}
+
+header {
+    background: #007BFF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.form, .messages {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.message {
+    background: #eee;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+function addMessage() {
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+
+    if(name === "" || message === "") {
+        alert("Remplis tous les champs !");
+        return;
+    }
+
+    let messageDiv = document.createElement("div");
+    messageDiv.className = "message";
+    messageDiv.innerHTML = "<strong>" + name + ":</strong> " + message;
+
+    document.getElementById("messagesList").appendChild(messageDiv);
+
+    document.getElementById("name").value = "";
+    document.getElementById("message").value = "";
+}
