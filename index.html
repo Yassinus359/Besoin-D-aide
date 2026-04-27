@@ -1,87 +1,43 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Besoin d'aide</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<select id="type">
+    <option value="">Type de besoin</option>
+    <option>Pédiatre</option>
+    <option>Médecin général</option>
+    <option>Femme de ménage</option>
+    <option>Ouvrier</option>
+    <option>Autre</option>
+</select>
 
-<header>
-    <h1>Besoin d'aide</h1>
-    <p>Une plateforme pour aider et être aidé</p>
-</header>
+<select id="urgence">
+    <option value="">Niveau d'urgence</option>
+    <option>Urgent 🚨</option>
+    <option>Aujourd'hui</option>
+    <option>Cette semaine</option>
+</select>
 
-<section class="form">
-    <h2>Demander de l'aide</h2>
-    <input type="text" id="name" placeholder="Ton nom">
-    <textarea id="message" placeholder="Explique ton problème"></textarea>
-    <button onclick="addMessage()">Envoyer</button>
-</section>
+<textarea id="probleme" placeholder="Décris ton problème (ex: enfant malade, nettoyage maison, réparation...)"></textarea>
+function envoyerDemande() {
+    let nom = document.getElementById("nom").value;
+    let tel = document.getElementById("tel").value;
+    let ville = document.getElementById("ville").value;
+    let type = document.getElementById("type").value;
+    let urgence = document.getElementById("urgence").value;
+    let probleme = document.getElementById("probleme").value;
 
-<section class="messages">
-    <h2>Demandes</h2>
-    <div id="messagesList"></div>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
-body {
-    font-family: Arial;
-    background: #f4f4f4;
-    margin: 0;
-}
-
-header {
-    background: #007BFF;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.form, .messages {
-    background: white;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-input, textarea {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-}
-
-button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.message {
-    background: #eee;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-function addMessage() {
-    let name = document.getElementById("name").value;
-    let message = document.getElementById("message").value;
-
-    if(name === "" || message === "") {
-        alert("Remplis tous les champs !");
+    if(nom === "" || tel === "" || ville === "" || type === "" || urgence === "" || probleme === "") {
+        alert("Remplis tout correctement !");
         return;
     }
 
-    let messageDiv = document.createElement("div");
-    messageDiv.className = "message";
-    messageDiv.innerHTML = "<strong>" + name + ":</strong> " + message;
+    // 🧠 Reformulation automatique
+    let message = `Bonjour, je m'appelle ${nom}, je suis à ${ville}.
+J'ai besoin d'un(e) ${type}.
+Urgence: ${urgence}.
+Problème: ${probleme}.
+Contact: ${tel}`;
 
-    document.getElementById("messagesList").appendChild(messageDiv);
+    let div = document.createElement("div");
+    div.className = "item";
+    div.innerText = message;
 
-    document.getElementById("name").value = "";
-    document.getElementById("message").value = "";
+    document.getElementById("demandes").appendChild(div);
 }
