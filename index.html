@@ -1,56 +1,42 @@
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-const firebaseConfig = {
-  apiKey: "TON_API_KEY",
-  authDomain: "TON_PROJET.firebaseapp.com",
-  projectId: "TON_PROJET_ID",
-};
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Besoin d'aide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-function envoyerDemande() {
-    let nom = document.getElementById("nom").value;
-    let tel = document.getElementById("tel").value;
-    let ville = document.getElementById("ville").value;
-    let type = document.getElementById("type").value;
-    let sousType = document.getElementById("sousType").value;
-    let probleme = document.getElementById("probleme").value;
+<!-- PAGE DE GARDE -->
+<header>
+    <h1>Besoin d'aide</h1>
+    <p>Trouve rapidement un professionnel près de toi</p>
+    <a href="#formulaire" class="btn">Commencer</a>
+</header>
 
-    if(!nom || !tel || !ville || !type || !sousType || !probleme){
-        alert("Remplis tout !");
-        return;
-    }
+<!-- FORMULAIRE -->
+<section id="formulaire">
+    <h2>Fais ta demande</h2>
 
-    db.collection("demandes").add({
-        nom,
-        tel,
-        ville,
-        type,
-        sousType,
-        probleme,
-        date: new Date()
-    });
+    <input type="text" id="nom" placeholder="Nom">
+    <input type="tel" id="tel" placeholder="Téléphone">
+    <input type="text" id="ville" placeholder="Ville">
 
-    alert("Demande envoyée !");
-}
-db.collection("demandes")
-.orderBy("date", "desc")
-.onSnapshot(snapshot => {
-    let container = document.getElementById("demandes");
-    container.innerHTML = "";
+    <select id="type" onchange="changerOptions()">
+        <option value="">Choisir un service</option>
+        <option value="docteur">Docteur</option>
+        <option value="menage">Femme de ménage</option>
+    </select>
 
-    snapshot.forEach(doc => {
-        let d = doc.data();
+    <select id="sousType">
+        <option value="">Choisir une option</option>
+    </select>
 
-        let div = document.createElement("div");
-        div.innerHTML = `
-            <strong>${d.nom}</strong> (${d.ville})<br>
-            ${d.type} - ${d.sousType}<br>
-            ${d.probleme}<br>
-            📞 <a href="tel:${d.tel}">Appeler</a>
-        `;
+    <textarea id="probleme" placeholder="Explique ton problème"></textarea>
 
-        container.appendChild(div);
-<a href="tel:12345678">Appeler</a>
-    });
-});
+    <button onclick="envoyerDemande()">Valider</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
