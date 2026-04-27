@@ -40,3 +40,66 @@
 <script src="script.js"></script>
 </body>
 </html>
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* Page de garde */
+header {
+    height: 100vh;
+    background: linear-gradient(to right, #007BFF, #00c6ff);
+    color: white;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: white;
+    color: #007BFF;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+/* Formulaire */
+section {
+    padding: 40px;
+    background: #f4f4f4;
+}
+
+input, select, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+button {
+    background: green;
+    color: white;
+    padding: 10px;
+    border: none;
+}
+function changerOptions() {
+    let type = document.getElementById("type").value;
+    let sousType = document.getElementById("sousType");
+
+    sousType.innerHTML = "";
+
+    if(type === "docteur") {
+        sousType.innerHTML = `
+            <option>Pédiatre</option>
+            <option>Médecin général</option>
+        `;
+    } else if(type === "menage") {
+        sousType.innerHTML = `
+            <option>Nettoyage</option>
+            <option>Repassage</option>
+        `;
+    }
+}
+
+function envoyerDemande() {
+    alert("Demande envoyée !");
+}
