@@ -15,29 +15,3 @@
 </select>
 
 <textarea id="probleme" placeholder="Décris ton problème (ex: enfant malade, nettoyage maison, réparation...)"></textarea>
-function envoyerDemande() {
-    let nom = document.getElementById("nom").value;
-    let tel = document.getElementById("tel").value;
-    let ville = document.getElementById("ville").value;
-    let type = document.getElementById("type").value;
-    let urgence = document.getElementById("urgence").value;
-    let probleme = document.getElementById("probleme").value;
-
-    if(nom === "" || tel === "" || ville === "" || type === "" || urgence === "" || probleme === "") {
-        alert("Remplis tout correctement !");
-        return;
-    }
-
-    // 🧠 Reformulation automatique
-    let message = `Bonjour, je m'appelle ${nom}, je suis à ${ville}.
-J'ai besoin d'un(e) ${type}.
-Urgence: ${urgence}.
-Problème: ${probleme}.
-Contact: ${tel}`;
-
-    let div = document.createElement("div");
-    div.className = "item";
-    div.innerText = message;
-
-    document.getElementById("demandes").appendChild(div);
-}
